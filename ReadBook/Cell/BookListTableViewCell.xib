@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="BookListTableViewCell" customModule="ReadBook" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KRQ-Dy-rYG">
+                        <rect key="frame" x="10" y="10" width="40" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="RG7-n6-7Z9"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5It-P3-B7G">
+                        <rect key="frame" x="58" y="10" width="254" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="Lxj-t7-USn"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xst-Rg-1BI">
+                        <rect key="frame" x="58" y="33" width="254" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3J-AO-dXP">
+                        <rect key="frame" x="58" y="56" width="254" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="f3J-AO-dXP" firstAttribute="leading" secondItem="KRQ-Dy-rYG" secondAttribute="trailing" constant="8" id="6ax-25-qdJ"/>
+                    <constraint firstItem="KRQ-Dy-rYG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="Dqa-Hw-P9w"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="KRQ-Dy-rYG" secondAttribute="bottom" constant="1" id="K4s-U1-AdV"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="f3J-AO-dXP" secondAttribute="trailing" id="KPg-1d-woi"/>
+                    <constraint firstItem="xst-Rg-1BI" firstAttribute="leading" secondItem="KRQ-Dy-rYG" secondAttribute="trailing" constant="8" id="Nxs-M2-WwW"/>
+                    <constraint firstItem="5It-P3-B7G" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="ONf-KD-esW"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="5It-P3-B7G" secondAttribute="trailing" id="VtT-9Q-VWD"/>
+                    <constraint firstItem="KRQ-Dy-rYG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="Vz6-k7-y1E"/>
+                    <constraint firstItem="5It-P3-B7G" firstAttribute="leading" secondItem="KRQ-Dy-rYG" secondAttribute="trailing" constant="8" id="bei-6x-a8G"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="xst-Rg-1BI" secondAttribute="bottom" constant="1" id="chC-GE-ulu"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="xst-Rg-1BI" secondAttribute="trailing" id="fmt-SF-zmU"/>
+                    <constraint firstItem="f3J-AO-dXP" firstAttribute="top" secondItem="xst-Rg-1BI" secondAttribute="bottom" constant="8" id="kFw-qF-f9S"/>
+                    <constraint firstItem="xst-Rg-1BI" firstAttribute="top" secondItem="5It-P3-B7G" secondAttribute="bottom" constant="8" id="mSH-dO-wCV"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="chC-GE-ulu"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bookCoverImageView" destination="KRQ-Dy-rYG" id="ARx-IH-iPC"/>
+                <outlet property="bookLastChapterLabel" destination="xst-Rg-1BI" id="Ven-K8-HLW"/>
+                <outlet property="bookNameLabel" destination="5It-P3-B7G" id="U91-0A-2Px"/>
+                <outlet property="updateTimeLabel" destination="f3J-AO-dXP" id="wEe-BZ-kvL"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

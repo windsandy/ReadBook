@@ -15,7 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		// Override point for customization after application launch.
+		
+		window = UIWindow(frame:UIScreen.mainScreen().bounds)
+		let containerViewController = ContainerViewController()
+		window!.rootViewController = containerViewController
+		window!.makeKeyAndVisible()
+		//初始化数据库
+		initDBBase()
 		return true
 	}
 
@@ -39,6 +45,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func applicationWillTerminate(application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+	}
+	/**
+	初始化数据库
+	
+	- returns: 是否成功
+	*/
+	func initDBBase()->Bool{
+		let book = WRBook(pk: "", title: "", gid: "", nid: "")
+		let sqlBook = WRFMDBManager.shareInstance().getCreateSqlWithClass(book, primaryKeyName: DBBASE_PK_FIELD_NAME)
+		let chapter = WRChapter(pk: "", bookID: 1, gid: "", nid: "")
+		let sqlChapter = WRFMDBManager.shareInstance().getCreateSqlWithClass(chapter, primaryKeyName: DBBASE_PK_FIELD_NAME)
+		let history = WRHistory(bookID: 1, lastChapterSort: 1, dateTime: NSDate())
+		let sqlHistory = WRFMDBManager.shareInstance().getCreateSqlWithClass(history, primaryKeyName: DBBASE_PK_FIELD_NAME)
+		let setting = WRSetting()
+		let sqlSetting = WRFMDBManager.shareInstance().getCreateSqlWithClass(setting, primaryKeyName: DBBASE_PK_FIELD_NAME)
+		if WRFMDBManager.shareInstance().insertDB([sqlBook,sqlChapter,sqlHistory,sqlSetting]){
+			print("创建表成功")
+		}else {
+			print("创建表失败,\(sqlBook)")
+			return false
+		}
+		
+		return true
 	}
 
 
