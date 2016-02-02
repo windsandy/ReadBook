@@ -112,82 +112,82 @@ struct ReadContent{
 		let size = CGSize(width: rect.width, height: rect.height)
 		return (attributedString,size)
 	}
-	static func getPagesOfString(cache:String,font:UIFont,r:CGRect) ->NSArray{
-		//返回一个数组，包含每一页的字符串开始点喝长度(NSRange)
-		let ranges = NSMutableArray()
-		//显示字体的行高
-		let tmp:NSString = "Sample样本"
-		
-		let fontCGSize = tmp.sizeWithAttributes([NSFontAttributeName:font])
-		let maxLine = Int(floor(r.size.height/fontCGSize.height))
-		var totalLines = 0
-		var lastParaLeft = ""
-		var range = NSMakeRange(0, 0)
-		//按段落将字符串分开
-		let paragraphs = cache.componentsSeparatedByString("\n")
-		var p = 0
-		while (p < paragraphs.count){
-			var para:NSString = ""
-			if !lastParaLeft.isEmpty{
-				para = lastParaLeft
-				lastParaLeft = ""
-			}else{
-				para = paragraphs[p]
-				if p < paragraphs.count{
-					para = para.stringByAppendingString("\n")
-				}
-				p++
-			}
-			let paraSize = getSize(font,size: r.size,para: para)
-			let paraLines = Int(floor(paraSize.height/fontCGSize.height))
-			if totalLines + paraLines < maxLine{
-				totalLines += paraLines
-				range.length += para.length
-				if p == paragraphs.count {
-					//到文章结尾
-					ranges.addObject(NSValue(range: range))
-				}else {
-					if totalLines + paraLines == maxLine{
-						//刚好一段结束，本页也结束
-						ranges.addObject(NSValue(range: range))
-						range.location += range.length
-						range.length = 0
-						totalLines = 0
-					}
-				}
-			}else{
-				//页结束本段文字还有剩余
-				let lineLeft = maxLine - totalLines
-				var tmpSize:CGSize
-				var i:Int
-				for i = 1 ; i < para.length ; ++i{
-					//逐字判断是否达到了本页最大容量
-					let tmp = para.substringToIndex(i)
-					tmpSize = getSize(font, size: r.size, para: tmp)
-					let nowLine = Int(floor(tmpSize.height/fontCGSize.height))
-					if lineLeft < nowLine{
-						//超出容量，跳出，字符要回退一个，因为当前字符已经超出范围
-						lastParaLeft = para.substringFromIndex(i-1)
-						break
-					}
-				}
-				range.length += i-1
-				ranges.addObject(NSValue(range: range))
-				range.location += range.length
-				range.length = 0
-				totalLines = 0
-			}
-		}
-		return NSArray(array: ranges)
-		
-	}
-	static func getSize(font:UIFont,size:CGSize,para:NSString)->CGSize{
-		let paragraphStyle = NSMutableParagraphStyle()
-		paragraphStyle.lineBreakMode = .ByCharWrapping
-		let att = [NSFontAttributeName:font,NSParagraphStyleAttributeName:paragraphStyle]
-		let paraSize = para.boundingRectWithSize(size, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: att, context: nil).size
-		return paraSize
-	}
+//	static func getPagesOfString(cache:String,font:UIFont,r:CGRect) ->NSArray{
+//		//返回一个数组，包含每一页的字符串开始点喝长度(NSRange)
+//		let ranges = NSMutableArray()
+//		//显示字体的行高
+//		let tmp:NSString = "Sample样本"
+//		
+//		let fontCGSize = tmp.sizeWithAttributes([NSFontAttributeName:font])
+//		let maxLine = Int(floor(r.size.height/fontCGSize.height))
+//		var totalLines = 0
+//		var lastParaLeft = ""
+//		var range = NSMakeRange(0, 0)
+//		//按段落将字符串分开
+//		let paragraphs = cache.componentsSeparatedByString("\n")
+//		var p = 0
+//		while (p < paragraphs.count){
+//			var para:NSString = ""
+//			if !lastParaLeft.isEmpty{
+//				para = lastParaLeft
+//				lastParaLeft = ""
+//			}else{
+//				para = paragraphs[p]
+//				if p < paragraphs.count{
+//					para = para.stringByAppendingString("\n")
+//				}
+//				p++
+//			}
+//			let paraSize = getSize(font,size: r.size,para: para)
+//			let paraLines = Int(floor(paraSize.height/fontCGSize.height))
+//			if totalLines + paraLines < maxLine{
+//				totalLines += paraLines
+//				range.length += para.length
+//				if p == paragraphs.count {
+//					//到文章结尾
+//					ranges.addObject(NSValue(range: range))
+//				}else {
+//					if totalLines + paraLines == maxLine{
+//						//刚好一段结束，本页也结束
+//						ranges.addObject(NSValue(range: range))
+//						range.location += range.length
+//						range.length = 0
+//						totalLines = 0
+//					}
+//				}
+//			}else{
+//				//页结束本段文字还有剩余
+//				let lineLeft = maxLine - totalLines
+//				var tmpSize:CGSize
+//				var i:Int
+//				for i = 1 ; i < para.length ; ++i{
+//					//逐字判断是否达到了本页最大容量
+//					let tmp = para.substringToIndex(i)
+//					tmpSize = getSize(font, size: r.size, para: tmp)
+//					let nowLine = Int(floor(tmpSize.height/fontCGSize.height))
+//					if lineLeft < nowLine{
+//						//超出容量，跳出，字符要回退一个，因为当前字符已经超出范围
+//						lastParaLeft = para.substringFromIndex(i-1)
+//						break
+//					}
+//				}
+//				range.length += i-1
+//				ranges.addObject(NSValue(range: range))
+//				range.location += range.length
+//				range.length = 0
+//				totalLines = 0
+//			}
+//		}
+//		return NSArray(array: ranges)
+//		
+//	}
+//	static func getSize(font:UIFont,size:CGSize,para:NSString)->CGSize{
+//		let paragraphStyle = NSMutableParagraphStyle()
+//		paragraphStyle.lineBreakMode = .ByCharWrapping
+//		let att = [NSFontAttributeName:font,NSParagraphStyleAttributeName:paragraphStyle]
+//		let paraSize = para.boundingRectWithSize(size, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: att, context: nil).size
+//		return paraSize
+//	}
 	static func getContentCGRect()->CGRect{
 		return getContentCGRect(10,top: 20,right: 10,bottom: 10)
 	}
